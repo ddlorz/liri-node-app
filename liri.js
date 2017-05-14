@@ -28,13 +28,16 @@ function mainOperations(operation, input) {
     //Tweets operation. Display 20 last tweets.
     if (operation === 'my-tweets') {
         var client = new Twitter(twitterKey.twitterKeys);
-        var params = {screen_name: 'BarackObama'};
+        var accountName = 'BarackObama';
+        var params = {screen_name: accountName};
         client.get('statuses/user_timeline', params, function(error, tweets, response) {
+            logContent = '\n@' + accountName + " Tweets: ";
+            console.log('@' + accountName + " Tweets: ");
             if (!error) {
                 for (var i = 0; i < 20; i++) {
-                    console.log(tweets[i].created_at); console.log('');
-                    console.log(i + ": " + tweets[i].text); console.log('');
-                    logContent = logContent + tweets[i].created_at + '\n' + i + ": " + tweets[i].text + '\n';
+                    console.log(tweets[i].created_at);
+                    console.log((i + 1) + ": " + tweets[i].text); console.log('');
+                    logContent = logContent + tweets[i].created_at + '\n' + (i+1) + ": " + tweets[i].text + '\n';
                 }
             }
             else {
@@ -57,8 +60,8 @@ function mainOperations(operation, input) {
             console.log("Artist: " + pointer.artists[0].name);
             console.log("Song: " + pointer.name);
             console.log("Link: " + pointer.external_urls.spotify); 
-            console.log("Album: " + pointer.album.name);    
-            logContent = "Artist: " + pointer.artists[0].name + '\n' + "Song: " + pointer.name + '\n' + 
+            console.log("Album: " + pointer.album.name + '\n');    
+            logContent = "\nArtist: " + pointer.artists[0].name + '\n' + "Song: " + pointer.name + '\n' + 
                          "Link: " + pointer.external_urls.spotify + '\n' + "Album: " + pointer.album.name + '\n';
             logData(logContent);
         });
@@ -82,9 +85,9 @@ function mainOperations(operation, input) {
 
             input = input.replace(/ /g, '_')
             input = input.replace(/:/g, '')
-            console.log("Rotten Tomatoes URL: " + 'https://www.rottentomatoes.com/m/' + input);
+            console.log("Rotten Tomatoes URL: " + 'https://www.rottentomatoes.com/m/' + input + '\n');
 
-            logContent = "Title: " + movieData.Title + '\n' + "Year: " + movieData.Year + '\n' + 
+            logContent = "\nTitle: " + movieData.Title + '\n' + "Year: " + movieData.Year + '\n' + 
                          "IMDB Rating: " + movieData.imdbRating + '\n' + "Country: " + movieData.Country + '\n' +
                          "Country: " + movieData.Country + '\n' + "Language: " + movieData.Language + '\n' + 
                          "Plot: " + movieData.Plot + '\n' + "Actors: " + movieData.Actors + '\n' +
