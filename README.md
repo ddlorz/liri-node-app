@@ -19,3 +19,6 @@ Example terminal command to movie: node liri.js movie-this Minority Report
 
 All outputs are logged to log.txt.
 
+**Twitter key has been deleted for security reasons therefore the tweeter command will not function.
+
+
